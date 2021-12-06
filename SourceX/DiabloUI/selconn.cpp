@@ -32,6 +32,9 @@ void selconn_Load()
 #ifdef BUGGY
 	vecConnItems.push_back(new UiListItem("Peer-to-Peer (UDP)", SELCONN_UDP));
 #endif
+#ifdef DISCORD
+	vecConnItems.push_back(new UiListItem("Discord", SELCONN_DISCORD));
+#endif
 #endif
 	vecConnItems.push_back(new UiListItem("Loopback", SELCONN_LOOPBACK));
 
@@ -112,6 +115,10 @@ void selconn_Focus(int value)
 	case SELCONN_LOOPBACK:
 		strncpy(selconn_Description, "Play by yourself with no network exposure.", sizeof(selconn_Description) - 1);
 		players = 1;
+		break;
+	case SELCONN_DISCORD:
+		strncpy(selconn_Description, "Share game invites and play through Discord. Requires Discord.", sizeof(selconn_Description) - 1);
+		players = MAX_PLRS;
 		break;
 	}
 

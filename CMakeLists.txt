@@ -333,6 +333,11 @@ if(NOT NONET)
     SourceX/dvlnet/tcp_client.cpp
     SourceX/dvlnet/tcp_server.cpp
     SourceX/dvlnet/udp_p2p.cpp)
+
+  if(DISCORD_INTEGRATION)
+    list(APPEND devilutionx_SRCS
+      SourceX/dvlnet/discord_lobby.cpp)
+  endif()
 endif()
 
 if(DISCORD_INTEGRATION)
@@ -425,9 +430,7 @@ if(DISCORD_INTEGRATION)
     set(DISCORD_LIB_DIR "${discordsrc_SOURCE_DIR}/lib/x86_64")
   endif()
 
-  find_library(DISCORD_LIB
-    NAMES discord_game_sdk${CMAKE_SHARED_LIBRARY_SUFFIX}
-    HINTS ${DISCORD_LIB_DIR})
+  find_library(DISCORD_LIB discord_game_sdk${CMAKE_SHARED_LIBRARY_SUFFIX} ${DISCORD_LIB_DIR})
 
   add_library(discord_game_sdk STATIC IMPORTED)
   set_property(TARGET discord_game_sdk PROPERTY IMPORTED_LOCATION ${DISCORD_LIB})

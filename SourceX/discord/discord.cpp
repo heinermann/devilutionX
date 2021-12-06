@@ -26,6 +26,8 @@ constexpr std::array<const char *, NUM_HELLFIRE_CLASSES> CLASSES = { "Warrior", 
 constexpr std::array<const char *, DTYPE_CRYPT + 1> DUNGEONS = { "Town", "Cathedral", "Catacombs", "Caves", "Hell", "Nest", "Crypt" };
 } // namespace
 
+DiscordManager DiscordManager::instance = DiscordManager();
+
 DiscordManager::DiscordManager()
 {
 	discord::Core::Create(DISCORD_DEVIX_APPID, DiscordCreateFlags_NoRequireDiscord, &core);

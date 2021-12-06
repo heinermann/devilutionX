@@ -64,10 +64,6 @@ int color_cycle_timer;
 int ticks_per_sec = 20;
 WORD tick_delay = 50;
 
-#ifdef DISCORD
-DiscordManager discord;
-#endif
-
 /* rdata */
 
 /**
@@ -343,7 +339,7 @@ static void run_game_loop(unsigned int uMsg)
 	nthread_ignore_mutex(FALSE);
 
 	#ifdef DISCORD
-	discord.StartGame(gnDifficulty, gbMaxPlayers, plr[myplr]._pClass, plr[myplr]._pName);
+	DiscordManager::instance.StartGame(gnDifficulty, gbMaxPlayers, plr[myplr]._pClass, plr[myplr]._pName);
 	#endif
 
 	while (gbRunGame) {
@@ -370,12 +366,12 @@ static void run_game_loop(unsigned int uMsg)
 		DrawAndBlit();
 
 		#ifdef DISCORD
-		discord.UpdateGame(gbActivePlayers, plr[myplr]._pLevel, leveltype, currlevel);
+		DiscordManager::instance.UpdateGame(gbActivePlayers, plr[myplr]._pLevel, leveltype, currlevel);
 		#endif
 	}
 
 	#ifdef DISCORD
-	discord.UpdateMenu();
+	DiscordManager::instance.UpdateMenu();
 	#endif
 
 	if (gbMaxPlayers > 1) {
@@ -452,7 +448,7 @@ static void diablo_init_screen()
 	ClrDiabloMsg();
 
 	#ifdef DISCORD
-	discord.UpdateMenu();
+	DiscordManager::instance.UpdateMenu();
 	#endif
 }
 

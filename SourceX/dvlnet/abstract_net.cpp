@@ -3,6 +3,7 @@
 #include "stubs.h"
 #ifndef NONET
 #include "dvlnet/cdwrap.h"
+#include "dvlnet/discord_lobby.h"
 #include "dvlnet/tcp_client.h"
 #include "dvlnet/udp_p2p.h"
 #endif
@@ -25,6 +26,8 @@ std::unique_ptr<abstract_net> abstract_net::make_net(provider_t provider)
 #endif
 	case SELCONN_LOOPBACK:
 		return std::unique_ptr<abstract_net>(new loopback);
+	case SELCONN_DISCORD:
+		return std::make_unique<discord_lobby>();
 	default:
 		ABORT();
 	}

@@ -89,7 +89,8 @@ void selgame_GameSelection_Init()
 	vecSelGameDialog.push_back(new UiArtText("Select Action", rect4, UIS_CENTER | UIS_BIG));
 
 	vecSelGameDlgItems.push_back(new UiListItem("Create Game", 0));
-	vecSelGameDlgItems.push_back(new UiListItem("Join Game", 1));
+	if (provider != SELCONN_DISCORD)
+		vecSelGameDlgItems.push_back(new UiListItem("Join Game", 1));
 
 	vecSelGameDialog.push_back(new UiList(vecSelGameDlgItems, PANEL_LEFT + 305, (UI_OFFSET_Y + 255), 285, 26, UIS_CENTER | UIS_MED | UIS_GOLD));
 

@@ -9,11 +9,16 @@ namespace discord {
 class Core;
 }
 
+
 namespace dvl {
+
+namespace net {
+class discord_lobby;
+}
 
 class DiscordManager {
 public:
-	DiscordManager();
+	static DiscordManager instance;
 
 	void UpdateGame(int new_num_players, int new_player_level, int new_dungeon_type, int new_dungeon_level);
 	void StartGame(int difficulty, int max_players, int plyr_class, const char *char_name);
@@ -21,6 +26,8 @@ public:
 	void UpdateMenu();
 
 private:
+	DiscordManager();
+
 	std::string GetPlayerAssetString();
 	std::string GetLocationString();
 	std::string GetCharacterString();
@@ -46,6 +53,8 @@ private:
 	std::int64_t start_time = 0;
 	std::string game_id;
 	char game_password[128];
+
+	friend net::discord_lobby;
 };
 
 }
